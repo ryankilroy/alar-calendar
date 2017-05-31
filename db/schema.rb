@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170518124213) do
+ActiveRecord::Schema.define(version: 20170530034142) do
 
   create_table "events", force: :cascade do |t|
-    t.integer "day"
-    t.integer "month"
-    t.integer "year"
+    t.integer "day", null: false
+    t.integer "month", null: false
+    t.integer "year", null: false
     t.text "content"
+    t.boolean "public", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "months", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "order", null: false
+    t.integer "number_of_days", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

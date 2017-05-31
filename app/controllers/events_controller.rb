@@ -4,7 +4,9 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+		@today = Event.find(1)
+		@month = Month.find(@today.month)
+		@events = Event.where(month: @today.month).reject { |e| e.id == 1 }
   end
 
   # GET /events/1

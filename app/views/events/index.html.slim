@@ -1,0 +1,25 @@
+h1 = "#{@month[:name]} - #{@month[:order]}"
+
+table.table.table-bordered.table-responsive
+  thead
+    tr
+      th.fixed_width Moonsday
+      th.fixed_width Twosday
+      th.fixed_width Wanesday
+      th.fixed_width Thirstday
+      th.fixed_width Freeday
+      th.fixed_width Starday
+      th.fixed_width Sunday
+  tbody
+    - for day in 1..@month[:number_of_days]
+      - if (day-1)%7==0
+        tr
+      td.fixed_size class=(if @today.day == day then 'current' elsif @today.day > day then 'past' end)
+        div.row
+          div.col-xs-2
+            = day
+        - @events.select {|e| e.day == day}.each do |event|
+          div.row
+            div.col-xs-12
+              = event.content
+
