@@ -1,25 +1,32 @@
-h1 = "#{@month[:name]} - #{@month[:order]}"
+h1.center = "#{@month[:order]}. #{@month[:name]}"
 
-table.table.table-bordered.table-responsive
-  thead
-    tr
-      th.fixed_width Moonsday
-      th.fixed_width Twosday
-      th.fixed_width Wanesday
-      th.fixed_width Thirstday
-      th.fixed_width Freeday
-      th.fixed_width Starday
-      th.fixed_width Sunday
-  tbody
-    - for day in 1..@month[:number_of_days]
-      - if (day-1)%7==0
+div.row
+  div.col-xs-1
+    a.btn.btn-success.btn-month href="?month=#{@month.prev_link(@year)}"
+      '<
+  div.col-xs-10
+    table.table.table-bordered.table-responsive
+      thead
         tr
-      td.fixed_size class=(if @today.day == day then 'current' elsif @today.day > day then 'past' end)
-        div.row
-          div.col-xs-2
-            = day
-        - @events.select {|e| e.day == day}.each do |event|
-          div.row
-            div.col-xs-12
-              = event.content
-
+          th.fixed_width Moonsday
+          th.fixed_width Twosday
+          th.fixed_width Wanesday
+          th.fixed_width Thirstday
+          th.fixed_width Freeday
+          th.fixed_width Starday
+          th.fixed_width Sunday
+      tbody
+        - for day in 1..@month[:number_of_days]
+          - if (day-1)%7==0
+            tr
+          td.fixed_size class=relative(day, @month.order, @year, @today.day, @today.month, @today.year)
+            div.row
+              div.col-xs-2
+                = day
+            - @events.select {|e| e.day == day}.each do |event|
+              div.row
+                div.col-xs-12
+                  a.event href="/event/#{event.id}" =event.content
+  div.col-xs-1
+      a.btn.btn-success.btn-month href="?month=#{@month.next_link(@year)}"
+        '>

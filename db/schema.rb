@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20170530034142) do
   create_table "months", force: :cascade do |t|
     t.string "name", null: false
     t.integer "order", null: false
-    t.integer "number_of_days", null: false
+    t.integer "number_of_days", default: 28, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

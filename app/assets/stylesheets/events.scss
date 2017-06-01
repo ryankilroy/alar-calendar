@@ -2,14 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+a.event {
+	color: #6b7;
+	&:visited {
+		color: #4a6;
+	}
+}
+
+a.btn-month {
+	position: absolute;
+	top: 43vh;
+	color: white;
+}
+
+th {
+	color: white;
+	background-color: #6b8;
+}
+
 th.fixed_width {
 	width: 14vw;
 }
 
 td {
+	color: #6b8;
 	&:hover {
-		font-weight: 400;
-		background-color:#ccc !important;
+		font-weight: bold;
+		background-color:#ced !important;
 	}
 }
 td.fixed_size {
