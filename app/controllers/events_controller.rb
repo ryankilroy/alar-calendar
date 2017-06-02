@@ -2,9 +2,7 @@ class EventsController < ApplicationController
 	helper EventsHelper
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
-  # GET /events
-  # GET /events.json
-  def index
+  def list
 		@today = Event.find(1)
 		if params[:month].blank?
 			@month = Month.find(@today.month)
@@ -17,6 +15,13 @@ class EventsController < ApplicationController
 		@year = params[:year] ? params[:year].to_i : @today.year
 		@events = Event.where(month: @month.order, year: @year).reject { |e| e.id == 1 || e.public != true }
   end
+
+  # GET /events
+  # GET /events.json
+	def index
+		@day = params[:day]
+		@events = Event.order(:year,:month,:day)
+	end
 
   # GET /events/1
   # GET /events/1.json

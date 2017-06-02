@@ -2,6 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.cursive {
+	font-family: 'Tangerine', cursive;
+}
+
+a.cell {
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	padding: 8px;
+}
+
 a.event {
 	color: #6b7;
 	&:visited {
@@ -24,8 +35,9 @@ th.fixed_width {
 	width: 14vw;
 }
 
-td {
+td.cell {
 	color: #6b8;
+	padding: 0px !important;
 	&:hover {
 		font-weight: bold;
 		background-color:#ced !important;

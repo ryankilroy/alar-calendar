@@ -1,0 +1,36 @@
+div.row
+  div.col-xs-6
+    h1.text-left.cursive = "#{@month[:name]}"
+  div.col-xs-6
+    h1.text-right.cursive = "#{@month[:order]}#{ordinal(@month[:order])} month, #{@year}#{ordinal(@year)} year."
+
+div.row
+  div.col-xs-1
+    a.btn.btn-success.btn-month href="?month=#{@month.prev_link(@year)}"
+      '<
+  div.col-xs-10
+    table.table.table-bordered.table-responsive
+      thead
+        tr
+          th.fixed_width Moonsday
+          th.fixed_width Twosday
+          th.fixed_width Wanesday
+          th.fixed_width Thirstday
+          th.fixed_width Freeday
+          th.fixed_width Starday
+          th.fixed_width Sunday
+      tbody
+        - for day in 1..@month[:number_of_days]
+          - if (day-1)%7==0
+            tr
+          td.cell.fixed_size onclick="window.location='#{events_path(day: day, month: @month[:order], year: @year)}'" class=relative(day, @month[:order], @year, @today.day, @today.month, @today.year)
+            div.row
+              div.col-xs-12
+                = day
+            - @events.select{|e| e.day == day}.each do |event|
+                div.row
+                  div.col-xs-12
+                    a.event href="/event/#{event.id}" =event.content
+  div.col-xs-1
+      a.btn.btn-success.btn-month href="?month=#{@month.next_link(@year)}"
+        '>
