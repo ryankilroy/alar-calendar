@@ -23,14 +23,14 @@ div.row
         - for day in 1..@month[:number_of_days]
           - if (day-1)%7==0
             tr
-          td.cell.fixed_size onclick="window.location='#{events_path(day: day, month: @month[:order], year: @year)}'" class=relative(day, @month[:order], @year, @today.day, @today.month, @today.year)
+          td.cell.fixed_size onclick="if($(window.event.target).is('td')){window.location='#{events_path(day: day, month: @month[:order], year: @year)}'}" class=relative(day, @month[:order], @year, @today.day, @today.month, @today.year)
             div.row
               div.col-xs-12
                 = day
             - @events.select{|e| e.day == day}.each do |event|
                 div.row
                   div.col-xs-12
-                    a.event href="/event/#{event.id}" =event.content
+                    = link_to event.content, event_path(event), class: 'event'
   div.col-xs-1
       a.btn.btn-success.btn-month href="?month=#{@month.next_link(@year)}"
         '>
