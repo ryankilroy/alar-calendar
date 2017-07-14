@@ -8,13 +8,13 @@
 
   .field
     = f.label :day
-    = f.number_field :day
+    = f.number_field :day, value: params['day']
   .field
     = f.label :month
-    = f.number_field :month
+    = f.number_field :month, value: params['month']
   .field
     = f.label :year
-    = f.number_field :year
+    = f.number_field :year, value: params['year']
   .field
     = f.label :content
     = f.text_area :content

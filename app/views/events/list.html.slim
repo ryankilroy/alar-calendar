@@ -23,7 +23,7 @@ div.row
         - for day in 1..@month[:number_of_days]
           - if (day-1)%7==0
             tr
-          td.cell.fixed_size onclick="if($(window.event.target).is('td')){window.location='#{events_path(day: day, month: @month[:order], year: @year)}'}" class=relative(day, @month[:order], @year, @today.day, @today.month, @today.year)
+          td.cell.fixed_size onclick="if($(window.event.target).is('td')){window.location='#{new_event_path(day: day, month: @month[:order], year: @year)}'}" class=relative(day, @month[:order], @year, @today.day, @today.month, @today.year)
             div.row
               div.col-xs-12
                 = day

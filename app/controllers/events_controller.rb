@@ -40,11 +40,18 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
+    if event_params[:content].titleize == 'Today'
+      @today = Event.find 1
+      @today.update(event_params)
+      @today.save
+      @event = @today
+    else
+      @event = Event.new(event_params)
+    end
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
